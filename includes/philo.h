@@ -13,8 +13,6 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <cmath>
-#include <cstddef>
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -78,16 +76,18 @@ struct s_table
 
 size_t	get_time(void);
 size_t	get_time_curr(void);
-void	get_input(int argc, char **argv);
+void	get_input(int argc, char **argv, t_table *table);
+void	putfd(char *str, int fd);
 
 // philo.c
  
-t_philo	*philo_init(t_table *stats);
+t_philo	*philo_init(t_table *table);
 void	*philo_routine(void *ptr);
 
 // main.c
 
 int		usage(char *name);
 int		main(int argc, char **argv);
-void	check_watch(t_table *state);
+void	check_watch(t_table *table);
 
+#endif
