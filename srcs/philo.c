@@ -15,17 +15,17 @@
 #include <stddef.h>
 #include <unistd.h>
 
-t_philo		*philo_init(t_table *table);
-void		*philo_routine(void *ptr);
+t_philo			*philo_init(t_table *table);
+void			*philo_routine(void *ptr);
 static size_t	philo_eat_routine(t_philo *philo);
-static void	philo_get_fork(t_philo *philo, t_philo *philo_fork);
+static void		philo_get_fork(t_philo *philo, t_philo *philo_fork);
 
 t_philo	*philo_init(t_table *table)
 {
 	size_t	now;
 
 	auto int i = table->num_philo;
-	auto t_philo *res = malloc(sizeof(t_philo) * i);
+	auto t_philo * res = malloc(sizeof(t_philo) * i);
 	if (!res)
 		return (table->err++, NULL);
 	memset(res, 0, sizeof(t_philo) * i);
@@ -46,7 +46,7 @@ t_philo	*philo_init(t_table *table)
 
 void	*philo_routine(void *ptr)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)ptr;
 	while (1)

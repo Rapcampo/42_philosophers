@@ -21,7 +21,7 @@ static size_t	ft_atoi(char *num, size_t *err)
 {
 	size_t	res;
 
-	if (!(*num >='0' && *num <= '9'))
+	if (!(*num >= '0' && *num <= '9'))
 		return ((*err)++);
 	res = 0;
 	while (*num && (*num >= '0' && *num <= '9'))
@@ -66,6 +66,7 @@ void	get_input(int argc, char **argv, t_table *table)
 void	putfd(char *str, int fd)
 {
 	auto int len = -1;
-	while (str[++len]);
+	while (str[++len])
+		;
 	write(fd, str, len);
 }
