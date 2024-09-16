@@ -78,6 +78,7 @@ size_t	get_time(void);
 size_t	get_time_curr(void);
 void	get_input(int argc, char **argv, t_table *table);
 void	putfd(char *str, int fd);
+void	precise_usleep(size_t usec);
 
 // philo.c
 
