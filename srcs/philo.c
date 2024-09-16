@@ -57,7 +57,7 @@ void	*philo_routine(void *ptr)
 		philo->meals_eaten++;
 		philo->sleeping++;
 		pthread_mutex_unlock(&philo->mutex);
-		usleep(philo->time_to_sleep * 1000);
+		precise_usleep(philo->time_to_sleep * 1000);
 		pthread_mutex_lock(&philo->mutex);
 		if (philo->dead)
 			break ;
@@ -78,7 +78,7 @@ static size_t	philo_eat_routine(t_philo *philo)
 	philo->eating++;
 	philo->last_meal = get_time_curr();
 	pthread_mutex_unlock(&philo->mutex);
-	usleep(philo->time_to_eat * 1000);
+	precise_usleep(philo->time_to_eat * 1000);
 	pthread_mutex_lock(&philo->mutex);
 	philo->fork++;
 	pthread_mutex_unlock(&philo->mutex);
@@ -103,7 +103,7 @@ static void	philo_get_fork(t_philo *philo, t_philo *philo_fork)
 		if (!philo_fork->fork)
 		{
 			pthread_mutex_unlock(&philo->mutex);
-			usleep(1000);
+			precise_usleep(1000);
 			continue ;
 		}
 		philo_fork->fork--;
