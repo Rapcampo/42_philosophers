@@ -12,7 +12,7 @@
 
 # ================================= Files ======================================
 
-NAME	= Philo
+NAME	= philo
 SOURCE	= srcs/*.c
 OBJS	= objs/*.o
 DEPFLG	= -MP -MD

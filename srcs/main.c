@@ -93,6 +93,7 @@ void	check_end(t_table *table)
 		pthread_join(table->philos[i].thread, NULL);
 	}
 	free(table->philos);
+	exit(0);
 }
 
 int	main(int argc, char **argv)
