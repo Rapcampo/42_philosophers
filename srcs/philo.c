@@ -12,8 +12,6 @@
 
 #include "../includes/philo.h"
 #include <pthread.h>
-#include <stddef.h>
-#include <unistd.h>
 
 t_philo			*philo_init(t_table *table);
 void			*philo_routine(void *ptr);
@@ -60,6 +58,7 @@ void	*philo_routine(void *ptr)
 		philo->sleeping++;
 		pthread_mutex_unlock(&philo->mutex);
 		usleep(philo->time_to_sleep * 1000);
+		pthread_mutex_lock(&philo->mutex);
 		if (philo->dead)
 			break ;
 		philo->thinking++;
