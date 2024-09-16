@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
 int			usage(char *name);
 int			main(int argc, char **argv);
@@ -20,9 +20,10 @@ static void	check_end(t_table *table);
 
 int	usage(char *name)
 {
-	putfd(RED BLK"ERROR! Usage is the following:"RST, 2);
+	(void)name;
+	putfd(RED BLK"ERROR! Usage is the following:\n"RST, 2);
 	putfd(GRN"philo [nb_of_philos] [time_2_die] [time_2_eat] [time_2_sleep]"
-			"[number_of_times_must_eat]"RST, 2);
+			"[number_of_times_must_eat]\n"RST, 2);
 	return (1);
 }
 

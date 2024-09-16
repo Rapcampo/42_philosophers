@@ -69,7 +69,7 @@ void	*philo_routine(void *ptr)
 	return (NULL);
 }
 
-static size_t	philo_set_routine(t_philo *philo)
+static size_t	philo_eat_routine(t_philo *philo)
 {
 	philo_get_fork(philo, philo);
 	philo_get_fork(philo, philo->next);
