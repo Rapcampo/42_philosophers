@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-#include <bits/types/struct_timeval.h>
-#include <sys/time.h>
 
 static size_t	ft_atoi(char *num, size_t *err);
 size_t			get_time_curr(void);
@@ -65,31 +63,10 @@ void	get_input(int argc, char **argv, t_table *table)
 	get_time();
 }
 
-void	precise_usleep(size_t usec)
-{
-	struct timeval	start;
-	struct timeval	curr;
-	size_t			elapsed;
-	size_t			remaining;
-
-	elapsed = 0;
-	remaining = 0;
-	gettimeofday(&start, NULL);
-	while (elapsed < usec)
-	{
-		gettimeofday(&curr, NULL);
-		elapsed = (curr.tv_sec - start.tv_sec)
-			* 1000000 + (curr.tv_usec - start.tv_usec);
-		remaining = usec - elapsed;
-		if (remaining > 1000)
-			usleep(remaining / 2);
-	}
-}
-
 void	putfd(char *str, int fd)
 {
 	auto int len = -1;
 	while (str[++len])
 		;
-	write(fd, str, len);
+	(void)!write(fd, str, len);
 }

@@ -22,7 +22,7 @@ int	usage(void)
 {
 	putfd(RED BLN "ERROR! Usage is the following:\n"RST, 2);
 	putfd(GRN"philo [nb_of_philos] [time_2_die] [time_2_eat] [time_2_sleep]"
-			"[number_of_times_must_eat]\n"RST, 2);
+		"[number_of_times_must_eat]\n"RST, 2);
 	return (1);
 }
 
@@ -35,17 +35,17 @@ void	check_watch(t_table *table)
 	{
 		pthread_mutex_lock(&philo->mutex);
 		while (philo->in_hand > 0 && philo->in_hand--)
-			printf(GRN"%zu\t%zu %s\n", 
-					get_time(), philo->philo_id, "has taken a fork"RST);
+			printf(GRN"%zu\t%zu %s\n",
+				get_time(), philo->philo_id, "has taken a fork"RST);
 		if (philo->thinking > 0 && philo->thinking--)
-			printf(BLU"%zu\t%zu %s\n", 
-					get_time(), philo->philo_id, "is thinking"RST);
+			printf(BLU"%zu\t%zu %s\n",
+				get_time(), philo->philo_id, "is thinking"RST);
 		if (philo->eating > 0 && philo->eating--)
-			printf(PRP"%zu\t%zu %s\n", 
-					get_time(), philo->philo_id, "is eating"RST);
+			printf(PRP"%zu\t%zu %s\n",
+				get_time(), philo->philo_id, "is eating"RST);
 		if (philo->sleeping > 0 && philo->sleeping--)
-			printf(YLW"%zu\t%zu %s\n", 
-					get_time(), philo->philo_id, "is sleeping"RST);
+			printf(YLW"%zu\t%zu %s\n",
+				get_time(), philo->philo_id, "is sleeping"RST);
 		pthread_mutex_unlock(&philo->mutex);
 		philo = philo->next;
 		check_isalive(table, philo);

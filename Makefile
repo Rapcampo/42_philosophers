@@ -29,7 +29,7 @@ CC			= cc
 RM			= rm -rf
 AR			= ar -rcs
 FLAGS		= -Wall -Werror -Wextra -I$(HEADERS) -pthread -O3 #$(DEPFLG)
-DEBUG		= -g -fsanitize=thread
+DEBUG		= -g #-fsanitize=thread
 MAKE_FLAG	= --no-print-directory
 
 # =========================== Ansi Escape Codes ================================
