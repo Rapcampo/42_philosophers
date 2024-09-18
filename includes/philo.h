@@ -57,7 +57,6 @@ struct s_philo
 	size_t	sleeping;
 	size_t	dead;
 	t_philo	*next;
-//	t_table	*table;
 };
 
 struct s_table
@@ -65,8 +64,6 @@ struct s_table
 	size_t	argc;
 	size_t	num_philo;
 	size_t	time_to_die;
-	size_t	time_to_eat;
-	size_t	time_to_sleep;
 	size_t	max_eat;
 	size_t	err;
 	t_philo	*philos;
@@ -78,13 +75,14 @@ size_t	get_time(void);
 size_t	get_time_curr(void);
 void	get_input(int argc, char **argv, t_table *table);
 void	putfd(char *str, int fd);
+size_t	ft_atoi(char *num, size_t *err);
 
 // philo.c
 
-t_philo	*philo_init(t_table *table);
+t_philo	*philo_init(t_table *table, char **argv);
 void	*philo_routine(void *ptr);
 
-// main.c
+// table.c
 
 int		usage(void);
 int		main(int argc, char **argv);

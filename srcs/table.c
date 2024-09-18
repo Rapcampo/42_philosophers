@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapcampo <rapcampo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:33:10 by rapcampo          #+#    #+#             */
-/*   Updated: 2024/08/31 18:48:07 by rapcampo         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:38:19 by rapcampo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	check_isalive(t_table *table, t_philo *philo)
 	pthread_mutex_unlock(&philo->mutex);
 	if (table->argc != 5)
 		return ;
-	auto size_t i = -1;
+	auto size_t i = (size_t) -1;
 	pthread_mutex_lock(&table->philos[0].mutex);
 	auto size_t min = table->philos[0].meals_eaten;
 	pthread_mutex_unlock(&table->philos[0].mutex);
@@ -93,7 +93,6 @@ void	check_end(t_table *table)
 		pthread_join(table->philos[i].thread, NULL);
 	}
 	free(table->philos);
-	exit(0);
 }
 
 int	main(int argc, char **argv)
@@ -107,10 +106,11 @@ int	main(int argc, char **argv)
 	if (table.err)
 		return (putfd(RED BLN"ERROR! Must use values between 1 and INT_MAX!\n"
 				RST, 2), 1);
-	table.philos = philo_init(&table);
+	table.philos = philo_init(&table, argv);
 	if (table.err)
-		return (putfd(RED BLN"ERROR! Couldn't alloc Philosophers!"RST, 2), 1);
-	auto size_t i = -1;
+		return (putfd(RED BLN"ERROR! Must use values between 1 and INT_MAX!\n"
+				RST, 2), 1);
+	auto size_t i = (size_t) -1;
 	while (++i < table.num_philo)
 		pthread_create(&table.philos[i].thread, NULL, philo_routine,
 			&table.philos[i]);

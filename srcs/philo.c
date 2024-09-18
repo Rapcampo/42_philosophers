@@ -6,18 +6,18 @@
 /*   By: rapcampo <rapcampo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 22:01:22 by rapcampo          #+#    #+#             */
-/*   Updated: 2024/09/02 00:29:04 by rapcampo         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:27:17 by rapcampo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-t_philo			*philo_init(t_table *table);
+t_philo			*philo_init(t_table *table, char **argv);
 void			*philo_routine(void *ptr);
 static size_t	philo_eat_routine(t_philo *philo);
 static void		philo_get_fork(t_philo *philo, t_philo *philo_fork);
 
-t_philo	*philo_init(t_table *table)
+t_philo	*philo_init(t_table *table, char **argv)
 {
 	size_t	now;
 
@@ -32,11 +32,10 @@ t_philo	*philo_init(t_table *table)
 		res[i].philo_id = i + 1;
 		res[i].last_meal = now;
 		res[i].fork = 1;
-		res[i].time_to_eat = table->time_to_eat;
-		res[i].time_to_sleep = table->time_to_sleep;
+		res[i].time_to_eat = ft_atoi(argv[2], &table->err);
+		res[i].time_to_sleep = ft_atoi(argv[3], &table->err);
 		pthread_mutex_init(&res[i].mutex, NULL);
 		res[i].next = &res[(i + 1) % table->num_philo];
-	//	res[i].state = table;
 	}
 	return (res);
 }

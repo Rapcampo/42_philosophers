@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
-static size_t	ft_atoi(char *num, size_t *err);
+size_t			ft_atoi(char *num, size_t *err);
 size_t			get_time_curr(void);
 size_t			get_time(void);
 void			get_input(int argc, char **argv, t_table *table);
 
-static size_t	ft_atoi(char *num, size_t *err)
+size_t	ft_atoi(char *num, size_t *err)
 {
 	size_t	res;
 
@@ -56,8 +56,6 @@ void	get_input(int argc, char **argv, t_table *table)
 	table->argc = argc;
 	table->num_philo = ft_atoi(argv[0], &table->err);
 	table->time_to_die = ft_atoi(argv[1], &table->err);
-	table->time_to_eat = ft_atoi(argv[2], &table->err);
-	table->time_to_sleep = ft_atoi(argv[3], &table->err);
 	if (argc == 5)
 		table->max_eat = ft_atoi(argv[4], &table->err);
 	get_time();
@@ -65,7 +63,9 @@ void	get_input(int argc, char **argv, t_table *table)
 
 void	putfd(char *str, int fd)
 {
-	auto int len = -1;
+	int	len;
+
+	len = -1;
 	while (str[++len])
 		;
 	(void)!write(fd, str, len);
