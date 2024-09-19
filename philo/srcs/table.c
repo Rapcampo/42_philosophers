@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
+#include <pthread.h>
 
 int			usage(int errno);
 int			main(int argc, char **argv);
@@ -65,7 +66,7 @@ void	check_isalive(t_table *table, t_philo *philo)
 	pthread_mutex_lock(&philo->mutex);
 	if (get_time_curr() - philo->last_meal > table->time_to_die)
 	{
-		printf("%zu\t%zu %s\n", get_time(), philo->philo_id, "has died");
+		printf("%zu\t%zu %s\n", get_time(), philo->philo_id, RED"has died"RST);
 		philo->dead++;
 		table->err++;
 	}
