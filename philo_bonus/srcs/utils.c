@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../includes/philo_bonus.h"
+#include "philo_bonus.h"
 
 size_t			ft_atoi(char *num, size_t *err);
 size_t			get_time_curr(void);
@@ -81,7 +80,7 @@ char	*get_sem_name(char *start, size_t id)
 	size_t	temp;
 	char	*res;
 
-	auto size_t	len = 0;
+	auto size_t len = 0;
 	while (start[len])
 		len++;
 	temp = id;

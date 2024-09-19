@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
-#include <pthread.h>
-#include <semaphore.h>
-#include <unistd.h>
 
 void		*patrol(void *ptr);
 void		*end_patrol(void *ptr);
@@ -39,13 +36,13 @@ void	*patrol(void *ptr)
 		usleep(100);
 	}
 	sem_post(table->philo.sem);
-	print_state(table, "died");
+	print_state(table, RED"died"RST);
 	sem_wait(table->philo.sem);
 	table->philo.dead = 1;
 	sem_post(table->philo.sem);
 	auto size_t i = 0;
 	while (i++ < table->num_philo)
-		sem_post(table->philo.forks);
+		sem_post(table->end);
 	sem_post(table->philo.forks);
 	return (NULL);
 }
@@ -71,24 +68,24 @@ void	philo_routine(t_table *table)
 	while (1)
 	{
 		sem_wait(table->philo.forks);
-		print_state(table, "has taken a fork");
+		print_state(table, GRN"has taken a fork"RST);
 		sem_wait(table->philo.forks);
-		print_state(table, "has taken a fork");
+		print_state(table, GRN"has taken a fork"RST);
 		sem_wait(table->philo.sem);
 		table->philo.last_meal = get_time_curr();
-		if (table->philo.dead)
+		if (table->philo.dead == 1)
 			break ;
 		sem_post(table->philo.sem);
-		print_state(table, "is eating");
+		print_state(table, CYN"is eating"RST);
 		usleep(table->philo.time_to_eat * 1000);
 		sem_post(table->philo.forks);
 		sem_post(table->philo.forks);
 		sem_wait(table->philo.sem);
 		table->philo.meals_eaten++;
 		sem_post(table->philo.sem);
-		print_state(table, "is sleeping");
+		print_state(table, YLW"is sleeping"RST);
 		usleep(table->philo.time_to_sleep * 1000);
-		print_state(table, "is thinking");
+		print_state(table, PRP"is thinking"RST);
 		usleep(100);
 	}
 	philo_end_routine(table);

@@ -38,7 +38,7 @@ int	usage(int errno)
 	{
 		putfd(RED BLN "ERROR! Usage is the following:\n"RST, 2);
 		putfd(GRN"philo [nb_of_philos] [time_2_die] [time_2_eat] [time_2_sleep]"
-		"[number_of_times_must_eat]\n"RST, 2);
+			"[number_of_times_must_eat]\n"RST, 2);
 	}
 	if (errno == 1)
 		putfd(RED BLN"ERROR! Must use values between 1 and INT_MAX!\n"
@@ -50,7 +50,7 @@ int	usage(int errno)
 
 static void	*max_eat(void *ptr)
 {
-	t_table *table;
+	t_table	*table;
 
 	table = (t_table *)ptr;
 	auto size_t i = -1;
@@ -99,7 +99,7 @@ static void	init(t_table *table)
 			pthread_create(&table->philo.thread, 0, patrol, table);
 			pthread_create(&table->philo.end, 0, end_patrol, table);
 			philo_routine(table);
-			break;
+			break ;
 		}
 		usleep(100);
 	}

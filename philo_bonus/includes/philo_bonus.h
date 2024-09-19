@@ -64,8 +64,8 @@ struct s_table
 	size_t	argc;
 	size_t	num_philo;
 	size_t	time_to_die;
-	size_t	time_to_eat;
-	size_t	time_to_sleep;
+//	size_t	time_to_eat;
+//	size_t	time_to_sleep;
 	size_t	max_eat;
 	size_t	err;
 	sem_t	*print;
