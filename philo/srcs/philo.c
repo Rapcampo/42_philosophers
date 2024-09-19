@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
 t_philo			*philo_init(t_table *table, char **argv);
 void			*philo_routine(void *ptr);

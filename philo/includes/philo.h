@@ -84,7 +84,7 @@ void	*philo_routine(void *ptr);
 
 // table.c
 
-int		usage(void);
+int		usage(int errno);
 int		main(int argc, char **argv);
 void	check_watch(t_table *table);
 

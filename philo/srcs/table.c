@@ -6,23 +6,30 @@
 /*   By: rapcampo <rapcampo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:33:10 by rapcampo          #+#    #+#             */
-/*   Updated: 2024/09/18 15:38:19 by rapcampo         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:41:55 by rapcampo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int			usage(void);
+int			usage(int errno);
 int			main(int argc, char **argv);
 void		check_watch(t_table *state);
 static void	check_isalive(t_table *table, t_philo *philo);
 static void	check_end(t_table *table);
 
-int	usage(void)
+int	usage(int errno)
 {
-	putfd(RED BLN "ERROR! Usage is the following:\n"RST, 2);
-	putfd(GRN"philo [nb_of_philos] [time_2_die] [time_2_eat] [time_2_sleep]"
-		"[number_of_times_must_eat]\n"RST, 2);
+	if (errno == 0)
+	{
+		putfd(RED BLN "ERROR! Usage is the following:\n"RST, 2);
+		putfd(GRN"philo [nb_of_philos] [time_2_die] [time_2_eat] [time_2_sleep]"
+			"[number_of_times_must_eat]\n"RST, 2);
+	}
+	if (errno == 1)
+		putfd(RED BLN"ERROR! Must use values between 1 and INT_MAX!\n" RST, 2);
+	if (errno == 2)
+		putfd(RED BLN"ERROR! Unknown!\n" RST, 2);
 	return (1);
 }
 
@@ -101,15 +108,13 @@ int	main(int argc, char **argv)
 
 	memset(&table, 0, sizeof(table));
 	if (argc < 5 || argc > 6)
-		return (usage());
+		return (usage(0));
 	get_input(--argc, ++argv, &table);
 	if (table.err)
-		return (putfd(RED BLN"ERROR! Must use values between 1 and INT_MAX!\n"
-				RST, 2), 1);
+		return (usage(1));
 	table.philos = philo_init(&table, argv);
 	if (table.err)
-		return (putfd(RED BLN"ERROR! Must use values between 1 and INT_MAX!\n"
-				RST, 2), 1);
+		return (usage(1));
 	auto size_t i = (size_t) -1;
 	while (++i < table.num_philo)
 		pthread_create(&table.philos[i].thread, NULL, philo_routine,
